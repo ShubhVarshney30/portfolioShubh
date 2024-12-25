@@ -1,0 +1,52 @@
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.skill-card {
+  transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.skill-card[data-motion-reduce="no-preference"]:hover .skill-icon {
+  animation: bounce 0.5s ease infinite alternate;
+}
+
+.skill-card[data-motion-reduce="no-preference"]:hover {
+  animation: rotate 10s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card, .skill-card:hover, .skill-icon {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+
